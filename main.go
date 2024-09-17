@@ -44,6 +44,13 @@ func validateMatrix(matrix [][]int) bool {
 		if matrix[i][i] != 0 {
 			return false
 		}
+
+		// проверка на отрицательные значения
+		for j := 0; j < n; j++ {
+			if matrix[i][j] < 0 {
+				return false
+			}
+		}
 	}
 
 	return true

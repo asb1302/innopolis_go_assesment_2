@@ -30,6 +30,14 @@ func TestEvalSequence(t *testing.T) {
 		{0, 0, 1, 0, 1, 0, 0},
 	}
 
+	mtxWithNegatives := [][]int{
+		{0, -1, 0, 0, 0},
+		{-1, 0, -2, 0, 0},
+		{0, -2, 0, 1, 0},
+		{0, 0, 1, 0, 1},
+		{0, 0, 0, 1, 0},
+	}
+
 	tests := []struct {
 		name      string
 		args      args
@@ -101,6 +109,15 @@ func TestEvalSequence(t *testing.T) {
 			},
 			want:      0,
 			expectErr: "invalid user answer",
+		},
+		{
+			name: "matrix with negatives",
+			args: args{
+				mtx: mtxWithNegatives,
+				ua:  []int{0, 1, 2},
+			},
+			want:      0,
+			expectErr: "invalid matrix",
 		},
 	}
 	for _, tt := range tests {
